@@ -17,13 +17,13 @@ WrapperMouseArea {
         trigger.color = hoverColor;
 
         if (tooltip)
-            tip.open();
+            tip.show();
     }
     onExited: {
         trigger.color = color;
 
         if (tooltip)
-            tip.close();
+            tip.hide();
     }
 
     Tooltip {
