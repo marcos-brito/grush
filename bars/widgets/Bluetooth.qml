@@ -4,6 +4,7 @@ import qs.config
 Widget {
     id: root
     panel: "bluetooth-dashboard"
+    tooltip: "Bluetooth"
 
     IconifyIcon {
         set: Icons.set

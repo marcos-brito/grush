@@ -7,6 +7,7 @@ import qs.config
 Widget {
     id: root
     panel: "notification-dashboard"
+    tooltip: "Notifications"
 
     Menu {
         id: menu
@@ -34,14 +35,6 @@ Widget {
             height: 8
             radius: 50
             color: root.textColor
-
-            BaseText {
-                visible: false
-                anchors.centerIn: parent
-                text: "+9"
-                font.pixelSize: 7
-                color: Theme.base
-            }
         }
     }
 }

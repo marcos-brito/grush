@@ -5,6 +5,7 @@ import qs.config
 Widget {
     id: root
     panel: "date-dashboard"
+    tooltip: "Calendar"
 
     ColumnLayout {
         anchors.centerIn: parent

@@ -6,6 +6,7 @@ import qs.config
 Widget {
     id: root
     panel: "pomodoro-dashboard"
+    tooltip: "Timer"
 
     IconifyIcon {
         icon: Icons.pomodoroDashboard

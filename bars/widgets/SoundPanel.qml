@@ -5,6 +5,7 @@ import qs.config
 Widget {
     id: root
     panel: "sound-dashboard"
+    tooltip: "Volume"
 
     ColumnLayout {
         anchors.centerIn: parent

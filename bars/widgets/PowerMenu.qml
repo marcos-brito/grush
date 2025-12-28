@@ -5,6 +5,7 @@ import qs.config
 
 Widget {
     panel: "powermenu"
+    tooltip: "Power"
 
     IconifyIcon {
         icon: Icons.shutdown
