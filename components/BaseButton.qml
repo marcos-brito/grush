@@ -9,10 +9,32 @@ WrapperMouseArea {
     property int radius: 8
     property string color: Theme.base
     property string hoverColor: Theme.overlay
+    property string tooltip: ""
 
     hoverEnabled: true
-    onEntered: trigger.color = hoverColor
-    onExited: trigger.color = color
+
+    onEntered: {
+        trigger.color = hoverColor;
+
+        if (tooltip)
+            tip.open();
+    }
+    onExited: {
+        trigger.color = color;
+
+        if (tooltip)
+            tip.close();
+    }
+
+    Tooltip {
+        id: tip
+        origin: SuperPanel.Origin.BottomLeft
+        anchor.item: root
+        anchor.margins.left: 20
+        anchor.margins.top: -20
+
+        text: root.tooltip
+    }
 
     WrapperRectangle {
         id: trigger
