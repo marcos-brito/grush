@@ -8,8 +8,8 @@ BaseButton {
     property string text
     property string icon
     property int size: 14
-    color: Theme.base
-    hoverColor: Theme.overlay
+    color: Theme.overlay
+    hoverColor: Theme.base
 
     Layout.fillWidth: true
 
