@@ -8,7 +8,7 @@ WrapperMouseArea {
     property int margin: 8
     property int radius: 8
     property string color: Theme.base
-    property string hoverColor: Theme.overlay
+    property string hoverColor: Theme.accent
     property string tooltip: ""
 
     hoverEnabled: true
