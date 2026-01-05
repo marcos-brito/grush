@@ -22,7 +22,8 @@ Singleton {
         if (isOpen(name))
             return;
 
-        console.log("opened:" + name);
+        for (const panel of openPanels)
+            close(panel);
 
         panels[name].open();
         openPanels.push(name);
@@ -32,8 +33,6 @@ Singleton {
     function close(name: string) {
         if (!isOpen(name))
             return;
-
-        console.log("closed:" + name);
 
         panels[name].close();
         openPanels = openPanels.filter(p => p !== name);
