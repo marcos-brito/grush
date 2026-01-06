@@ -18,9 +18,17 @@ BasePanel {
     property int bottomRightRadius
     property int bottomLeftRadius
 
-    width: panel.width
-    height: panel.height
-    focusable: true
+    MouseArea {
+        anchors.fill: parent
+        onClicked: Panels.close(root.name)
+    }
+
+    anchors {
+        left: true
+        right: true
+        top: true
+        bottom: true
+    }
 
     IpcHandler {
         target: root.name
