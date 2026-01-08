@@ -1,10 +1,8 @@
 import Quickshell
 import QtQuick
-import QtQuick.Effects
 import QtQuick.Layouts
 import qs.config
-import qs.bars.widgets
-import qs.bars.widgets.workspaces
+import qs.bars.widgets as Widgets
 
 PanelWindow {
     width: 42
@@ -33,7 +31,7 @@ PanelWindow {
                 ColumnLayout {
                     anchors.horizontalCenter: parent.horizontalCenter
 
-                    Workspaces {}
+                    Widgets.Workspaces {}
                 }
             }
 
@@ -45,7 +43,7 @@ PanelWindow {
                 ColumnLayout {
                     anchors.centerIn: parent
 
-                    FocusedWindow {}
+                    Widgets.Window {}
                 }
             }
 
@@ -57,18 +55,18 @@ PanelWindow {
                     anchors.horizontalCenter: parent.horizontalCenter
                     spacing: 16
 
-                    Clock {}
+                    Widgets.Clock {}
 
                     ColumnLayout {
                         spacing: 4
 
-                        Bluetooth {}
-                        Notifications {}
-                        SoundPanel {}
-                        Pomodoro {}
+                        Widgets.Bluetooth {}
+                        Widgets.Notifications {}
+                        Widgets.Sound {}
+                        Widgets.Pomodoro {}
                     }
 
-                    PowerMenu {}
+                    Widgets.Power {}
                 }
             }
         }
