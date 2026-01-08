@@ -1,6 +1,6 @@
 import Quickshell
 import qs.config
-import qs.bars
+import qs.modules.bar
 import qs.modules.audio
 import qs.modules.picker
 import qs.modules.notification
