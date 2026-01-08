@@ -1,11 +1,14 @@
 import QtQuick.Layouts
 import qs.components
 import qs.config
+import qs.modules.audio
 
 Widget {
     id: root
     panel: "sound-dashboard"
     tooltip: "Volume"
+
+    Dashboard {}
 
     ColumnLayout {
         anchors.centerIn: parent

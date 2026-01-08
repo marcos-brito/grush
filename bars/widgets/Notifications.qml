@@ -1,25 +1,14 @@
 import QtQuick
-import Quickshell.Widgets
 import qs.components
-import qs.services
 import qs.config
+import qs.modules.notification
 
 Widget {
     id: root
     panel: "notification-dashboard"
     tooltip: "Notifications"
 
-    Menu {
-        id: menu
-        anchor.item: root
-        anchor.margins.left: 20
-        anchor.margins.top: 20
-
-        MenuItem {
-            text: "Clear"
-            icon: "bluetooth-connected"
-        }
-    }
+    Dashboard {}
 
     IconifyIcon {
         icon: Icons.notifications

@@ -1,12 +1,13 @@
-import Quickshell.Widgets
 import qs.components
-import qs.services
 import qs.config
+import qs.modules.pomodoro
 
 Widget {
     id: root
     panel: "pomodoro-dashboard"
     tooltip: "Timer"
+
+    Dashboard {}
 
     IconifyIcon {
         icon: Icons.pomodoroDashboard

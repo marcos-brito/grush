@@ -5,11 +5,6 @@ import qs.modules.audio
 import qs.modules.picker
 import qs.modules.notification
 import qs.modules.powermenu
-import qs.modules.audio
-import qs.modules.pomodoro
-import qs.modules.bluetooth
-import qs.modules.date
-import qs.modules.audio.player
 import qs.modules.background
 
 ShellRoot {
@@ -24,19 +19,8 @@ ShellRoot {
     }
 
     Notification {}
-    NotificationDashboard {}
-    PomodoroDashboard {}
     Osd {}
-    BluetoothDashboard {}
-    SoundDashboard {}
-    Bars {}
-    PlayerPanel {}
-
+    LeftBar {}
     AppPicker {}
     CommandPicker {}
-
-    DatePanel {}
-    DateDashboard {}
-    PowerMenu {}
-    // PlayerPanel {}
 }
