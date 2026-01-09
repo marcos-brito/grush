@@ -8,8 +8,8 @@ BasePanel {
     id: root
     default property alias content: edged.data
     property string panelColor: Theme.base
-    property int panelWidth
-    property int panelHeight
+    property int panelWidth: screen.width * 0.25
+    property int panelHeight: screen.height * 0.75
     property int origin: SuperPanel.Origin.Top
     property bool closeOnEsc: true
     property int radius
