@@ -4,6 +4,7 @@ import qs.config
 
 Popup {
     id: root
+    name: `tooltip-${root.text}`
 
     property string text
 
