@@ -30,14 +30,6 @@ BasePanel {
         bottom: true
     }
 
-    IpcHandler {
-        target: root.name
-
-        function open(): void {
-            Panels.open(root.name);
-        }
-    }
-
     Shortcut {
         sequences: ["Escape"]
         enabled: root.closeOnEsc
