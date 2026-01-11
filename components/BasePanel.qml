@@ -7,6 +7,7 @@ import qs.config
 PanelWindow {
     id: root
     required property string name
+    property bool register: true
 
     visible: false
     WlrLayershell.namespace: `qs-${name}`
@@ -14,7 +15,8 @@ PanelWindow {
     color: Theme.transparent
 
     Component.onCompleted: {
-        Panels.register(root);
+        if (root.register)
+            Panels.register(root);
     }
 
     function open(): void {
@@ -22,6 +24,6 @@ PanelWindow {
     }
 
     function close(): void {
-        root.visible = false
+        root.visible = false;
     }
 }
