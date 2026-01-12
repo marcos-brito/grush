@@ -1,31 +1,18 @@
 import QtQuick
+import Quickshell.Widgets
 
 Item {
     id: root
-    property int origin: SuperPanel.Origin.Top
-    property int contentHeight
-    property int contentWidth
-    property int edgeSize: 8
     default property alias data: content.data
-    property bool anchorLeft: false
-    property bool anchorRight: false
-    property bool anchorTop: false
-    property bool anchorBottom: false
+    property int origin: SuperPanel.Origin.Top
+    property int edgeSize: 8
 
-    height: contentHeight + edgeSize * 2
-    width: contentWidth + edgeSize * 2
     state: origin
+    width: content.width
+    height: content.height
 
-    Item {
+    WrapperItem {
         id: content
-        width: root.contentWidth
-        height: root.contentHeight
-        anchors.top: root.anchorTop ? parent.top : undefined
-        anchors.bottom: root.anchorBottom ? parent.bottom : undefined
-        anchors.verticalCenter: (!root.anchorTop && !root.anchorBottom) ? parent.verticalCenter : undefined
-        anchors.left: root.anchorLeft ? parent.left : undefined
-        anchors.right: root.anchorRight ? parent.right : undefined
-        anchors.horizontalCenter: (!root.anchorLeft && !root.anchorRight) ? parent.horizontalCenter : undefined
     }
 
     Edge {

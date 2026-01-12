@@ -15,7 +15,7 @@ Canvas {
         const ctx = getContext("2d");
 
         ctx.clearRect(0, 0, width, height);
-        ctx.fillStyle = root.color
+        ctx.fillStyle = root.color;
         ctx.fillRect(0, 0, width, height);
         ctx.globalCompositeOperation = "destination-out";
         ctx.beginPath();
