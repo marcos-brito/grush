@@ -1,8 +1,10 @@
 import QtQuick
+import Quickshell.Widgets
 
-Item {
+WrapperItem {
     id: root
-    default property alias content: content.data
+
+    default property alias data: content.data
     property int origin: SuperPanel.Origin.Top
 
     signal slideInFinished
@@ -15,10 +17,14 @@ Item {
         id: slide
     }
 
+    child: WrapperItem {
+        id: content
+        state: "closed"
+    }
+
     function slideIn(): void {
         visible = true;
         root.state = "opened";
-        console.log("aaaaaaa")
     }
 
     function slideOut(): void {
@@ -36,11 +42,6 @@ Item {
         }
     }
 
-    Item {
-        id: content
-        anchors.fill: parent
-        state: "closed"
-    }
 
     states: [
         State {
