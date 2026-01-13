@@ -1,26 +1,27 @@
 import QtQuick
 import QtQuick.Effects
-import Quickshell.Io
 import qs.config
 import qs.services
 
 BasePanel {
     id: root
-    default property alias content: edged.data
+
+    default property alias data: content.data
     property string panelColor: Theme.base
     property int panelWidth: screen.width * 0.25
     property int panelHeight: screen.height * 0.75
     property int origin: SuperPanel.Origin.Top
-    property bool closeOnEsc: true
-    property int radius
-    property int topRightRadius
-    property int topLeftRadius
-    property int bottomRightRadius
-    property int bottomLeftRadius
 
     MouseArea {
         anchors.fill: parent
         onClicked: Panels.close(root.name)
+    }
+
+    margins {
+        left: 40
+        right: 8
+        top: 8
+        bottom: 8
     }
 
     anchors {
@@ -28,13 +29,6 @@ BasePanel {
         right: true
         top: true
         bottom: true
-    }
-
-    Shortcut {
-        sequences: ["Escape"]
-        enabled: root.closeOnEsc
-        onActivated: Panels.close(root.name)
-        context: Qt.WindowShortcut
     }
 
     enum Origin {
@@ -51,18 +45,16 @@ BasePanel {
 
     function open(): void {
         visible = true;
-        panel.slideIn();
+        slider.slideIn();
     }
 
     function close(): void {
-        panel.slideOut();
+        slider.slideOut();
     }
 
     SlidingItem {
-        id: panel
+        id: slider
         origin: root.origin
-        width: edged.width
-        height: edged.height
         onSlideOutFinished: root.visible = false
 
         layer.enabled: true
@@ -72,24 +64,81 @@ BasePanel {
             shadowColor: Qt.alpha("#000", 0.7)
         }
 
+        anchors {
+            left:   origin === SuperPanel.Origin.Left ||
+                    origin === SuperPanel.Origin.TopLeft ||
+                    origin === SuperPanel.Origin.BottomLeft
+                    ? parent.left : undefined
+
+            right:  origin === SuperPanel.Origin.Right ||
+                    origin === SuperPanel.Origin.TopRight ||
+                    origin === SuperPanel.Origin.BottomRight
+                    ? parent.right : undefined
+
+            top:    origin === SuperPanel.Origin.Top ||
+                    origin === SuperPanel.Origin.TopLeft ||
+                    origin === SuperPanel.Origin.TopRight
+                    ? parent.top : undefined
+
+            bottom: origin === SuperPanel.Origin.Bottom ||
+                    origin === SuperPanel.Origin.BottomLeft ||
+                    origin === SuperPanel.Origin.BottomRight
+                    ? parent.bottom : undefined
+
+            horizontalCenter:
+                    origin === SuperPanel.Origin.Top ||
+                    origin === SuperPanel.Origin.Bottom ||
+                    origin === SuperPanel.Origin.Center
+                    ? parent.horizontalCenter : undefined
+
+            verticalCenter:
+                    origin === SuperPanel.Origin.Left ||
+                    origin === SuperPanel.Origin.Right ||
+                    origin === SuperPanel.Origin.Center
+                    ? parent.verticalCenter : undefined
+        }
+
         EdgedItem {
-            id: edged
-            contentWidth: root.panelWidth
-            contentHeight: root.panelHeight
+            id: edges
             origin: root.origin
-            anchorLeft: root.anchors.left
-            anchorRight: root.anchors.right
-            anchorTop: root.anchors.top
-            anchorBottom: root.anchors.bottom
 
             Rectangle {
-                anchors.fill: parent
+                id: content
+
+                implicitWidth: root.panelWidth
+                implicitHeight: root.panelHeight
                 color: root.panelColor
-                radius: root.radius
-                topRightRadius: root.topRightRadius
-                topLeftRadius: root.topLeftRadius
-                bottomLeftRadius: root.bottomLeftRadius
-                bottomRightRadius: root.bottomRightRadius
+
+                property real r: 8
+
+                readonly property bool roundLeft:
+                    origin === SuperPanel.Origin.Right ||
+                    origin === SuperPanel.Origin.TopRight ||
+                    origin === SuperPanel.Origin.BottomRight ||
+                    origin === SuperPanel.Origin.Center
+
+                readonly property bool roundRight:
+                    origin === SuperPanel.Origin.Left ||
+                    origin === SuperPanel.Origin.TopLeft ||
+                    origin === SuperPanel.Origin.BottomLeft ||
+                    origin === SuperPanel.Origin.Center
+
+                readonly property bool roundTop:
+                    origin === SuperPanel.Origin.Bottom ||
+                    origin === SuperPanel.Origin.BottomLeft ||
+                    origin === SuperPanel.Origin.BottomRight ||
+                    origin === SuperPanel.Origin.Center
+
+                readonly property bool roundBottom:
+                    origin === SuperPanel.Origin.Top ||
+                    origin === SuperPanel.Origin.TopLeft ||
+                    origin === SuperPanel.Origin.TopRight ||
+                    origin === SuperPanel.Origin.Center
+
+                topLeftRadius:     (roundTop && roundLeft)   ? r : 0
+                topRightRadius:    (roundTop && roundRight)  ? r : 0
+                bottomLeftRadius:  (roundBottom && roundLeft)? r : 0
+                bottomRightRadius: (roundBottom && roundRight)? r : 0
             }
         }
     }
