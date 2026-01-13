@@ -1,15 +1,18 @@
 import QtQuick
 import Quickshell.Widgets
 
+// HACK: Can't use a WrapperItem because it makes the
+// edges invisible.
 Item {
     id: root
+
     default property alias data: content.data
     property int origin: SuperPanel.Origin.Top
     property int edgeSize: 8
 
     state: origin
-    width: content.width
-    height: content.height
+    implicitWidth: content.width
+    implicitHeight: content.height
 
     WrapperItem {
         id: content
