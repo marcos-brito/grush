@@ -1,33 +1,60 @@
 import QtQuick
+import QtQuick.Effects
+import Quickshell
+import Quickshell.Widgets
+import qs.components
+import qs.config
+import QtQuick
 import qs.components
 import qs.config
 
-Popup {
+PopupWindow {
     id: root
-    name: `tooltip-${root.text}`
 
     property string text
+    property alias origin: slider.origin
+
+    visible: false
+    color: Theme.transparent
+    width: slider.width
+    height: slider.height
 
     function show() {
-        timer.restart();
+        if (!root.visible)
+            timer.restart();
     }
 
     function hide() {
-        root.close();
         timer.stop();
+        if (root.visible)
+            slider.slideOut();
     }
 
     Timer {
         id: timer
         interval: 400
         running: false
-        repeat: true
+        repeat: false
         onTriggered: {
-            root.open();
+            root.visible = true;
+            slider.slideIn();
         }
     }
 
-    BaseText {
-        text: root.text
+    SlidingItem {
+        id: slider
+        onSlideOutFinished: root.visible = false
+        origin: root.origin
+
+        WrapperRectangle {
+            id: wrapper
+            color: Theme.overlay
+            radius: 8
+            margin: 6
+
+            BaseText {
+                text: root.text
+            }
+        }
     }
 }
