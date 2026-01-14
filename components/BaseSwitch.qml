@@ -6,13 +6,12 @@ Switch {
     id: control
 
     property real size: 26 
-
     readonly property real trackHeight: size
     readonly property real trackWidth: size * 1.85
     readonly property real thumbSize: size * 0.77
     readonly property real margin: size * 0.115
-    readonly property real trackRadius: size * 0.3
-    readonly property real thumbRadius: size * 0.23
+    readonly property real trackRadius: size * 0.6
+    readonly property real thumbRadius: size * 0.4
     readonly property int animationDuration: 150
 
     text: ""
@@ -25,7 +24,7 @@ Switch {
         y: parent.height / 2 - height / 2
 
         radius: control.trackRadius
-        color: Theme.overlay
+        color: control.checked ? Theme.highlight : Theme.overlay
         border.color: Theme.transparent
 
         Rectangle {
@@ -41,7 +40,7 @@ Switch {
 
             y: (parent.height - height) / 2
 
-            color: control.checked ? Theme.highlight : Theme.base
+            color: control.checked ? Theme.overlay : Theme.highlight
             border.color: Theme.transparent
 
             Behavior on x {
