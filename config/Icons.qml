@@ -10,6 +10,7 @@ Singleton {
     property string previous: "skip-back"
     property string likeTrack: "heart"
 
+    property string calendarReset: "calendar-sync"
     property string calendarNext: "chevron-right"
     property string calendarPrevious: "chevron-left"
 

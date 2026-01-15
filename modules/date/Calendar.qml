@@ -9,36 +9,65 @@ import qs.components
 ColumnLayout {
     id: root
 
-    property int year:  (new Date()).getFullYear()
+    property int year: (new Date()).getFullYear()
     property int month: (new Date()).getMonth()
 
-    RowLayout {
-        Incrementable {
-            Layout.alignment: Qt.AlignLeft
-            color: Theme.text
-            value: root.year
-            text: root.year
-            onValueChanged: root.year = value
+    onMonthChanged: {
+        if (month < 0) {
+            month = 11;
+            year -= 1;
         }
 
-        Incrementable {
-            Layout.alignment: Qt.AlignRight
-            color: Theme.text
-            value: root.month
-            text: Qt.formatDate(new Date(root.year, root.month), "MMMM")
-            min: 0
-            max: 12
-            onValueChanged: root.month = value
+        if (month > 11) {
+            month = 0;
+            year += 1;
         }
     }
 
-    DayOfWeekRow {
-        id: row
-        Layout.fillWidth: true
+    RowLayout {
+        BaseText {
+            Layout.fillWidth: true
+            text: Qt.formatDate(new Date(root.year, root.month), "MMMM")
+            font.pixelSize: 12
+        }
 
-        delegate: BaseText {
-            required property string shortName
-            text: shortName
+        BaseButton {
+            tooltip: "Current month"
+            margin: 4
+            onClicked: {
+                root.year = (new Date()).getFullYear();
+                root.month = (new Date()).getMonth();
+            }
+
+            IconifyIcon {
+                icon: Icons.calendarReset
+                implicitSize: 16
+                color: Theme.subtext
+            }
+        }
+
+        BaseButton {
+            tooltip: "Previous month"
+            margin: 4
+            onClicked: root.month -= 1
+
+            IconifyIcon {
+                icon: Icons.calendarPrevious
+                implicitSize: 16
+                color: Theme.subtext
+            }
+        }
+
+        BaseButton {
+            tooltip: "Next month"
+            margin: 4
+            onClicked: root.month += 1
+
+            IconifyIcon {
+                icon: Icons.calendarNext
+                implicitSize: 16
+                color: Theme.subtext
+            }
         }
     }
 
