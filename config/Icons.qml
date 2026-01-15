@@ -17,6 +17,7 @@ Singleton {
     property string bluetooth: "bluetooth"
     property string systrayFallback: "badge-question-mark"
     property string notifications: "bell"
+    property string notificationsNew: "bell-dot"
     property string notificationsEmpty: "bell-off"
     property string passwordEmpty: "lock"
     property string passwordVisible: "eye"
