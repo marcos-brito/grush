@@ -26,18 +26,22 @@ SuperPanel {
 
     ColumnLayout {
         anchors.fill: parent
-        anchors.margins: 16
-        spacing: 32
+        anchors.margins: 10
+        visible: BluetoothService.defaultAdapter.enabled
+        spacing: 16
 
-        ColumnLayout {
+        DashboardHeader {
             Layout.alignment: Qt.AlignTop
             Layout.fillWidth: true
-            spacing: 16
+        }
 
             BaseText {
                 text: "Devices"
                 color: Theme.text
             }
+        Separator {
+            Layout.fillWidth: true
+        }
 
             Repeater {
                 model: BluetoothService.devices
