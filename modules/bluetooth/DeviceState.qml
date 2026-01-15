@@ -20,19 +20,19 @@ RowLayout {
     }
 
     Spinner {
-        display: "Connecting"
+        text: "Connecting"
         spacing: 8
-        visible: root.device.state == BluetoothDeviceState.Connecting
+        running: root.device.state == BluetoothDeviceState.Connecting
     }
 
     Spinner {
-        display: "Disconnecting"
-        visible: root.device.state == BluetoothDeviceState.Disconnecting
+        text: "Disconnecting"
+        running: root.device.state == BluetoothDeviceState.Disconnecting
     }
 
     Spinner {
-        display: "Pairing"
-        visible: root.device.pairing
+        text: "Pairing"
+        running: root.device.pairing
 
         BaseButton {
             onClicked: root.device.cancelPair()
@@ -43,22 +43,6 @@ RowLayout {
                 color: Theme.subtext
                 implicitSize: 12
             }
-        }
-    }
-
-    component Spinner: RowLayout {
-        id: root
-        property string display
-        spacing: 8
-
-        BaseText {
-            text: root.display
-            color: Theme.subtext
-        }
-
-        BaseSpinner {
-            size: 14
-            running: true
         }
     }
 }
