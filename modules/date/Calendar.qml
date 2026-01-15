@@ -1,4 +1,4 @@
-pragma ComponentBehavior:  Bound
+pragma ComponentBehavior: Bound
 
 import QtQuick
 import QtQuick.Controls
@@ -71,37 +71,68 @@ ColumnLayout {
         }
     }
 
-    MonthGrid {
-        id: grid
-        year: root.year
-        month: root.month
-        Layout.fillWidth: true
-        Layout.fillHeight: true
+    ColumnLayout {
+        MouseArea {
+            anchors.fill: parent
+            onWheel: {
+                if (wheel.angleDelta.y > 0 || wheel.angleDelta.x > 0)
+                    return month += 1;
+                else
+                    return month -= 1;
+            }
+        }
 
-        delegate: Rectangle {
-            required property var model
+        DayOfWeekRow {
+            id: row
+            Layout.fillWidth: true
 
-            width: 25
-            height: 25
-            color: model.today ? Theme.highlight : Theme.base
-            radius: 4
+            delegate: Rectangle {
+                required property string narrowName
+                
+                color: Theme.transparent
+                width: 20
+                height: 20
 
-            Text {
-                anchors.fill: parent
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                text: parent.model.day
-                color: {
-                    const isCurrentDay = parent.model.today;
-                    const isCurrentMonth = parent.model.month === grid.month;
+                BaseText {
+                    anchors.centerIn: parent
+                    text: narrowName
+                }
+            }
+        }
 
-                    if (isCurrentDay)
-                        return Theme.base;
+        MonthGrid {
+            id: grid
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            year: root.year
+            month: root.month
+            width: 20
+            height: 20
 
-                    if (isCurrentMonth)
-                        return Theme.text;
+            delegate: Rectangle {
+                required property var model
 
-                    return Theme.subtext;
+                color: model.today ? Theme.highlight : Theme.base
+                radius: 4
+
+                BaseText {
+                    id: text
+                    anchors.centerIn: parent
+
+                    text: parent.model.day
+                    font.pixelSize: 12
+                    color: {
+                        const isCurrentDay = parent.model.today;
+                        const isCurrentMonth = parent.model.month === grid.month;
+
+                        if (isCurrentDay)
+                            return Theme.base;
+
+                        if (isCurrentMonth)
+                            return Theme.text;
+
+                        return Theme.subtext;
+                    }
                 }
             }
         }
