@@ -1,16 +1,13 @@
-import Quickshell
+import QtQuick
 import Quickshell.Widgets
 import QtQuick.Layouts
-import QtQuick.Effects
-import qs.config
-import qs.components
 
-Popup {
-    id: root
-
-    default property alias data: items.data
+WrapperItem {
+    default property alias data: content.data
 
     ColumnLayout {
-        id: items
+        id: content
+        spacing: 4
+        anchors.margins: 8
     }
 }
