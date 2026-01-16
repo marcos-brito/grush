@@ -7,9 +7,11 @@ BaseButton {
     id: root
     property string text
     property string icon
-    property int size: 14
-    color: Theme.overlay
-    hoverColor: Theme.base
+    property int size: 13
+    color: Theme.base
+    hoverColor: Theme.overlay
+    margin: 2
+    radius: 4
 
     Layout.fillWidth: true
 
