@@ -15,6 +15,7 @@ Singleton {
     property string calendarPrevious: "chevron-left"
 
     property string menu: "ellipsis-vertical"
+    property string menuFallbackIcon: "dot"
     property string bluetooth: "bluetooth"
     property string systrayFallback: "badge-question-mark"
     property string notifications: "bell"

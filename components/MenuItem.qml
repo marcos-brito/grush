@@ -7,6 +7,9 @@ BaseButton {
     id: root
     property string text
     property string icon
+    property string text: ""
+    property string icon: Icons.menuFallbackIcon
+    property string systemIcon
     property int size: 13
     color: Theme.base
     hoverColor: Theme.overlay
@@ -20,16 +23,16 @@ BaseButton {
 
         IconifyIcon {
             visible: icon
-            set: Icons.set
-            icon: root.icon
+            icon: root.icon 
+            systemIcon: root.systemIcon
             implicitSize: root.size
             color: Theme.text
         }
 
         BaseText {
+            visible: root.text.length > 0
             Layout.fillWidth: true
             horizontalAlignment: Text.AlignLeft
-            visible: text
             text: root.text
             font.pixelSize: root.size
         }
