@@ -7,13 +7,15 @@ import qs.config
 IconImage {
     id: root
     required property string icon
+    property string systemIcon: ""
     property string set: Icons.set
     property string color: Theme.highlight
     property string iconPath: `${root.set}-${root.icon}.svg`
+    property string iconUrl: `https://api.iconify.design/${set}/${icon}.svg?height=${actualSize}&color=%23${color.replace("#", "")}`
 
     implicitSize: 24
     asynchronous: true
-    source: `https://api.iconify.design/${set}/${icon}.svg?height=${actualSize}&color=%23${color.replace("#", "")}`
+    source: Quickshell.iconPath(root.systemIcon, true) || iconUrl
 
     Process {
         id: cacheProc
@@ -22,5 +24,8 @@ IconImage {
         running: false
     }
 
-    Component.onCompleted: cacheProc.running = true
+    Component.onCompleted: {
+        if (!systemIcon)
+            cacheProc.running = true;
+    }
 }
