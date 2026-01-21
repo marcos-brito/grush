@@ -32,6 +32,9 @@ Item {
         State {
             name: SuperPanel.Origin.Top
             PropertyChanges {
+                root.implicitWidth: root.implicitWidth + (edgeSize * 2)
+                content.anchors.centerIn: root
+
                 edge1.anchors.top: content.top
                 edge1.anchors.left: content.left
                 edge1.anchors.leftMargin: -root.edgeSize
@@ -44,6 +47,12 @@ Item {
         State {
             name: SuperPanel.Origin.TopRight
             PropertyChanges {
+                root.implicitHeight: root.implicitHeight + edgeSize
+                root.implicitWidth: root.implicitWidth + edgeSize
+                content.anchors.top: root.top
+                content.anchors.right: root.right
+
+
                 edge1.anchors.top: content.top
                 edge1.anchors.left: content.left
                 edge1.anchors.leftMargin: -root.edgeSize
@@ -55,6 +64,11 @@ Item {
         State {
             name: SuperPanel.Origin.TopLeft
             PropertyChanges {
+                root.implicitHeight: root.implicitHeight + edgeSize
+                root.implicitWidth: root.implicitWidth + edgeSize
+                content.anchors.top: root.top
+                content.anchors.left: root.left
+
                 edge1.anchors.bottom: content.bottom
                 edge1.anchors.left: content.left
                 edge1.anchors.bottomMargin: -root.edgeSize
@@ -68,6 +82,9 @@ Item {
         State {
             name: SuperPanel.Origin.Bottom
             PropertyChanges {
+                root.implicitWidth: root.implicitWidth + (edgeSize * 2)
+                content.anchors.centerIn: root
+
                 edge1.anchors.bottom: content.bottom
                 edge1.anchors.left: content.left
                 edge1.anchors.leftMargin: -root.edgeSize
@@ -81,6 +98,11 @@ Item {
         State {
             name: SuperPanel.Origin.BottomRight
             PropertyChanges {
+                root.implicitHeight: root.implicitHeight + edgeSize
+                root.implicitWidth: root.implicitWidth + edgeSize
+                content.anchors.bottom: root.bottom
+                content.anchors.right: root.left
+
                 edge1.anchors.bottom: content.bottom
                 edge1.anchors.left: content.left
                 edge1.anchors.leftMargin: -root.edgeSize
@@ -94,10 +116,16 @@ Item {
         State {
             name: SuperPanel.Origin.BottomLeft
             PropertyChanges {
+                root.implicitHeight: root.implicitHeight + edgeSize
+                root.implicitWidth: root.implicitWidth + edgeSize
+                content.anchors.bottom: root.bottom
+                content.anchors.left: root.left
+
                 edge1.anchors.top: content.top
                 edge1.anchors.left: content.left
                 edge1.anchors.topMargin: -root.edgeSize
                 edge1.rotation: 180
+
                 edge2.anchors.bottom: content.bottom
                 edge2.anchors.right: content.right
                 edge2.anchors.rightMargin: -root.edgeSize
@@ -107,6 +135,9 @@ Item {
         State {
             name: SuperPanel.Origin.Right
             PropertyChanges {
+                root.implicitHeight: root.implicitHeight + (edgeSize * 2)
+                content.anchors.centerIn: root
+
                 edge1.anchors.bottom: content.bottom
                 edge1.anchors.right: content.right
                 edge1.anchors.bottomMargin: -root.edgeSize
@@ -119,10 +150,14 @@ Item {
         State {
             name: SuperPanel.Origin.Left
             PropertyChanges {
+                root.implicitHeight: root.implicitHeight + (edgeSize * 2)
+                content.anchors.centerIn: root
+
                 edge1.anchors.bottom: content.bottom
                 edge1.anchors.left: content.left
                 edge1.anchors.bottomMargin: -root.edgeSize
                 edge1.rotation: 270
+
                 edge2.anchors.top: content.top
                 edge2.anchors.left: content.left
                 edge2.anchors.topMargin: -root.edgeSize
