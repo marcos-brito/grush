@@ -5,4 +5,5 @@ import qs.config
 Rectangle {
     height: 2
     color: Theme.overlay
+    Layout.fillWidth: true
 }
