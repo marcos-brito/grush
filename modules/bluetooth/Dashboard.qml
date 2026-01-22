@@ -4,24 +4,16 @@ import QtQuick.Layouts
 import qs.components
 import qs.services
 import qs.config
+import qs.modules.bluetooth.status as Status
 
 SuperPanel {
     id: root
-
     name: "bluetooth-dashboard"
-    panelWidth: screen.width * 0.25
-    panelHeight: screen.height * 0.7
     origin: SuperPanel.Origin.Left
-    topRightRadius: 8
-    bottomRightRadius: 8
 
-    anchors {
-        left: true
-    }
-
-    margins {
-        top: Props.topBarHeight
-        left: Props.leftBarWidth
+    Status.Disabled {
+        anchors.centerIn: parent
+        visible: !BluetoothService.defaultAdapter.enabled
     }
 
     ColumnLayout {
@@ -30,24 +22,56 @@ SuperPanel {
         visible: BluetoothService.defaultAdapter.enabled
         spacing: 16
 
-        DashboardHeader {
+        ColumnLayout {
             Layout.alignment: Qt.AlignTop
             Layout.fillWidth: true
-        }
 
-            BaseText {
-                text: "Devices"
-                color: Theme.text
+            spacing: 8
+
+            DashboardHeader {
+                Layout.fillWidth: true
             }
-        Separator {
-            Layout.fillWidth: true
         }
 
-            Repeater {
-                model: BluetoothService.devices
-                delegate: Device {
-                    required property BluetoothDevice modelData
-                    device: modelData
+        Status.NoDevices {
+            anchors.centerIn: parent
+            visible: !BluetoothService.defaultAdapter.discovering && BluetoothService.devices.length == 0
+        }
+
+        Status.Searching {
+            anchors.centerIn: parent
+            visible: BluetoothService.defaultAdapter.discovering && BluetoothService.devices.length == 0
+        }
+
+        Item {
+            visible: BluetoothService.devices.length > 0
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+
+            ColumnLayout {
+                spacing: 16
+
+                RowLayout {
+                    BaseText {
+                        text: "Devices"
+                        color: Theme.text
+                    }
+
+                    Spinner {
+                        running: BluetoothService.defaultAdapter.discovering
+                        size: 10
+                        text: "Scanning"
+                    }
+                }
+
+                Repeater {
+                    model: Bluetooth.devices
+
+                    Device {
+                        required property BluetoothDevice modelData
+                        Layout.fillWidth: true
+                        device: modelData
+                    }
                 }
             }
         }
