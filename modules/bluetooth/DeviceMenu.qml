@@ -1,53 +1,43 @@
-import Quickshell
 import Quickshell.Bluetooth
-import QtQuick.Layouts
 import qs.components
 import qs.config
+import Quickshell.Widgets
 
-BaseButton {
+Menu {
     id: root
     required property BluetoothDevice device
 
-    onClicked: menu.visible ? menu.close() : menu.open()
-    margin: 4
+    color: Theme.overlay
 
-    IconifyIcon {
-        Layout.alignment: Qt.AlignTop | Qt.AlignRight
-        set: Icons.set
-        icon: Icons.menu
-        color: Theme.text
-        implicitSize: 18
+    MenuItem {
+        text: "Connect"
+        icon: "bluetooth-connected"
+        onClicked: root.device.connect()
+        hoverColor: Theme.base
+        color: Theme.overlay
     }
 
-    Menu {
-        id: menu
-        anchor.item: root
-        anchor.margins.left: 20
-        anchor.margins.top: 20
+    MenuItem {
+        text: "Disconnect"
+        icon: "bluetooth-off"
+        onClicked: root.device.disconnect()
+        hoverColor: Theme.base
+        color: Theme.overlay
+    }
 
-        MenuItem {
-            text: "Connect"
-            icon: "bluetooth-connected"
-            onClicked: root.device.connect()
-        }
+    MenuItem {
+        text: "Pair"
+        icon: "link"
+        onClicked: root.device.pair()
+        hoverColor: Theme.base
+        color: Theme.overlay
+    }
 
-        MenuItem {
-            text: "Disconnect"
-            icon: "bluetooth-off"
-            onClicked: root.device.disconnect()
-        }
-
-        MenuItem {
-            text: "Pair"
-            icon: "link"
-            onClicked: root.device.pair()
-        }
-
-        MenuItem {
-            text: "Forget"
-            icon: "x"
-            onClicked: root.device.forget()
-        }
-
+    MenuItem {
+        text: "Forget"
+        icon: "x"
+        onClicked: root.device.forget()
+        hoverColor: Theme.base
+        color: Theme.overlay
     }
 }

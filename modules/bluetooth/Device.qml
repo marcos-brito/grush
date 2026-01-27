@@ -13,8 +13,17 @@ BaseButton {
     Layout.fillWidth: true
 
     RowLayout {
-        anchors.fill: parent
         spacing: 16
+
+        ContextMenu {
+            id: menu
+            anchors.fill: parent
+            anchor.item: root
+
+            DeviceMenu {
+                device: root.device
+            }
+        }
 
         IconifyIcon {
             id: fallback
