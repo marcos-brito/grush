@@ -47,8 +47,9 @@ WrapperItem {
         id: listView
         anchors.fill: parent
         spacing: 16
-        anchors.margins: 16
         model: listModel
-        delegate: Content {}
+        delegate: Notifi {
+            width: ListView.view.width
+        }
     }
 }
