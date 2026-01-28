@@ -1,5 +1,6 @@
 import QtQuick
 import Quickshell.Bluetooth
+import Quickshell.Widgets
 import QtQuick.Layouts
 import qs.components
 import qs.services
@@ -22,15 +23,9 @@ SuperPanel {
         visible: BluetoothService.defaultAdapter.enabled
         spacing: 16
 
-        ColumnLayout {
-            Layout.alignment: Qt.AlignTop
+        DashboardHeader {
             Layout.fillWidth: true
-
-            spacing: 8
-
-            DashboardHeader {
-                Layout.fillWidth: true
-            }
+            Layout.alignment: Qt.AlignTop
         }
 
         Status.NoDevices {
@@ -43,37 +38,10 @@ SuperPanel {
             visible: BluetoothService.defaultAdapter.discovering && BluetoothService.devices.length == 0
         }
 
-        Item {
-            visible: BluetoothService.devices.length > 0
+        DeviceList {
             Layout.fillHeight: true
             Layout.fillWidth: true
-
-            ColumnLayout {
-                spacing: 16
-
-                RowLayout {
-                    BaseText {
-                        text: "Devices"
-                        color: Theme.text
-                    }
-
-                    Spinner {
-                        running: BluetoothService.defaultAdapter.discovering
-                        size: 10
-                        text: "Scanning"
-                    }
-                }
-
-                Repeater {
-                    model: Bluetooth.devices
-
-                    Device {
-                        required property BluetoothDevice modelData
-                        Layout.fillWidth: true
-                        device: modelData
-                    }
-                }
-            }
+            visible: BluetoothService.devices.length > 0
         }
     }
 }
