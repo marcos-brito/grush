@@ -11,7 +11,7 @@ RowLayout {
     property string battery: device.battery ? `- ${device.battery * 100}%` : ""
 
     BaseText {
-        visible: root.device.state == BluetoothDeviceState.Connected
+        visible: root.device.state == BluetoothDeviceState.Connected && !root.device.pairing
         text: `Connected ${battery}`
         color: Theme.subtext
     }
@@ -43,6 +43,7 @@ RowLayout {
         BaseButton {
             onClicked: root.device.cancelPair()
             margin: 4
+
             IconifyIcon {
                 set: Icons.set
                 icon: "x"
