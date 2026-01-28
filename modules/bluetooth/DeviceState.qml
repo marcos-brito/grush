@@ -6,10 +6,11 @@ import qs.config
 RowLayout {
     id: root
     required property BluetoothDevice device
+    property string battery: device.battery ? `- ${device.battery * 100}%` : ""
 
     BaseText {
         visible: root.device.state == BluetoothDeviceState.Connected
-        text: "Connected"
+        text: `Connected ${battery}`
         color: Theme.subtext
     }
 
