@@ -10,6 +10,7 @@ Menu {
     color: Theme.overlay
 
     MenuItem {
+        visible: !root.device.connected
         text: "Connect"
         icon: "bluetooth-connected"
         onClicked: root.device.connect()
@@ -18,6 +19,7 @@ Menu {
     }
 
     MenuItem {
+        visible: root.device.connected
         text: "Disconnect"
         icon: "bluetooth-off"
         onClicked: root.device.disconnect()
@@ -26,6 +28,7 @@ Menu {
     }
 
     MenuItem {
+        visible: !root.device.paired
         text: "Pair"
         icon: "link"
         onClicked: root.device.pair()
