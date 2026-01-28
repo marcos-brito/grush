@@ -1,17 +1,14 @@
 import QtQuick
+import Quickshell.Widgets
 import QtQuick.Layouts
 import Quickshell.Services.Notifications
 import qs.services
 import qs.config
 
-Item {
+WrapperItem {
     id: root
     property list<Notification> notifications
     property bool dynamic: true
-    property int contentHeight: listView.contentHeight + 32
-
-    width: parent.width
-    height: Math.min(listView.contentHeight + 32, parent.height)
 
     Connections {
         target: NotificationService
