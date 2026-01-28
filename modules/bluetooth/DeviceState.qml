@@ -25,17 +25,20 @@ RowLayout {
     Spinner {
         text: "Connecting"
         spacing: 8
+        size: 12
         running: root.device.state == BluetoothDeviceState.Connecting
     }
 
     Spinner {
         text: "Disconnecting"
+        size: 12
         running: root.device.state == BluetoothDeviceState.Disconnecting
     }
 
     Spinner {
         text: "Pairing"
         running: root.device.pairing
+        size: 12
 
         BaseButton {
             onClicked: root.device.cancelPair()
