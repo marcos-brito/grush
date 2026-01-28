@@ -20,11 +20,13 @@ BaseButton {
     onDoubleClicked: console.log("dismiis")
 
     onEntered: {
-        root.folded = false;
+        if (Options.autoUnfold)
+            folded = false;
     }
 
     onExited: {
-        root.folded = true;
+        if (Options.autoUnfold)
+            folded = true;
     }
 
     Behavior on height {
