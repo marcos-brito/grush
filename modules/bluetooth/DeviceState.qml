@@ -6,6 +6,8 @@ import qs.config
 RowLayout {
     id: root
     required property BluetoothDevice device
+    visible: device.paired || device.state
+
     property string battery: device.battery ? `- ${device.battery * 100}%` : ""
 
     BaseText {
