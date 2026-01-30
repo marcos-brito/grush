@@ -17,7 +17,7 @@ BasePanel {
 
     aboveWindows: false
     exclusionMode: ExclusionMode.Ignore
-    visible: true
+    visible: Options.showFrame
     name: "frame"
     WlrLayershell.layer: WlrLayer.Background
 
