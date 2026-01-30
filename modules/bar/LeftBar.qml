@@ -18,12 +18,12 @@ PanelWindow {
 
     Rectangle {
         anchors.fill: parent
-        anchors.topMargin: 8
-        anchors.bottomMargin: 8
 
         color: Theme.base
 
         ColumnLayout {
+            anchors.topMargin: 8
+            anchors.bottomMargin: 8
             anchors.fill: parent
 
             Widgets.Workspaces {
