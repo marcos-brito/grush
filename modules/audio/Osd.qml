@@ -1,66 +1,52 @@
-import QtQuick
 import QtQuick.Layouts
 import Quickshell.Io
+import Quickshell.Widgets
 import Quickshell.Wayland
 import Quickshell.Services.Pipewire
 import qs.components
+import qs.components.overlay
 import qs.config
 
-SuperPanel {
+TimedPanel {
     id: root
+
     property PwNode node: Pipewire.defaultAudioSource
 
     WlrLayershell.layer: WlrLayer.Overlay
     name: "osd"
     panelWidth: screen.width * 0.05
     panelHeight: screen.height * 0.2
-    panelColor: Theme.base
-    origin: SuperPanel.Origin.Right
-    topLeftRadius: 8
-    bottomLeftRadius: 8
-    closeOnEsc: false
-    focusable: false
-
-    anchors {
-        right: true
-    }
-
-    margins {
-        right: 8
-    }
+    origin: Positioning.Origin.Right
 
     PwObjectTracker {
         objects: [root.node]
     }
 
-    Timer {
-        id: timer
-        interval: 2000
-        onTriggered: root.close()
-    }
 
-    ColumnLayout {
-        anchors.fill: parent
-        anchors.bottomMargin: Props.barMargin
-        anchors.topMargin: Props.barMargin
+        ColumnLayout {
+            anchors.fill: parent
+            anchors.bottomMargin: Props.barMargin
+            anchors.topMargin: Props.barMargin
 
-        BaseSlider {
-            flip: true
-            color: root.node.audio.muted ? Theme.critical : Theme.highlight
-            value: root.node.audio.volume
-            stepSize: 0.1
-            onValueChanged: root.node.audio.volume = value
-            orientation: Qt.Vertical
-            Layout.alignment: Qt.AlignHCenter
-            Layout.fillHeight: true
-        }
+            BaseSlider {
+                id: slider
+                flip: true
+                color: root.node.audio.muted ? Theme.critical : Theme.highlight
+                value: root.node.audio.volume
+                stepSize: 0.05
+                onValueChanged: root.node.audio.volume = value
+                orientation: Qt.Vertical
+                Layout.alignment: Qt.AlignHCenter
+                Layout.fillHeight: true
+            }
 
-        IconifyIcon {
-            set: "lucide"
-            icon: root.node.audio.muted ? Icons.audioMuted : Icons.audio
-            color: root.node.audio.muted ? Theme.critical : Theme.highlight
-            implicitSize: 20
-            Layout.alignment: Qt.AlignHCenter
+            IconifyIcon {
+                set: "lucide"
+                icon: root.node.audio.muted ? Icons.audioMuted : Icons.audio
+                color: root.node.audio.muted ? Theme.critical : Theme.highlight
+                implicitSize: 20
+                Layout.alignment: Qt.AlignHCenter
+            }
         }
     }
 
@@ -68,8 +54,7 @@ SuperPanel {
         target: "osd"
 
         function show(): void {
-            root.open()
-            timer.restart();
+            root.open();
         }
 
         function toogle(): void {
