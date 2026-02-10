@@ -6,6 +6,7 @@ import qs.components.window
 BaseWindow{
     id: root
 
+    default property alias data: content.data
     property alias origin: content.origin
     property alias panelColor: content.panelColor
     property alias panelWidth: content.panelWidth
