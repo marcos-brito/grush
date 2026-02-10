@@ -44,18 +44,35 @@ Singleton {
     }
 
     function topRightRadius(origin: Origin): int {
-        return (anchorLeft(origin) || anchorBottom(origin)) && !anchorTop(origin) ? 8 : 0;
+        return origin === Positioning.Origin.Left 
+        || origin === Positioning.Origin.Center 
+        || origin === Positioning.Origin.Bottom 
+        || origin === Positioning.Origin.BottomLeft
+        ? 8 : 0;
     }
 
     function topLeftRadius(origin: Origin): int {
-        return (anchorRight(origin) || anchorBottom(origin)) && !anchorTop(origin) ? 8 : 0;
-    }
-
-    function bottomLeftRadius(origin: Origin): int {
-        return (anchorRight(origin) || anchorTop(origin)) && !anchorBottom(origin) ? 8 : 0;
+        return origin === Positioning.Origin.Right 
+        || origin === Positioning.Origin.Center 
+        || origin === Positioning.Origin.Bottom 
+        || origin === Positioning.Origin.BottomRight
+        ? 8 : 0;
     }
 
     function bottomRightRadius(origin: Origin): int {
-        return (anchorLeft(origin) || anchorTop(origin)) && !anchorBottom(origin) ? 8 : 0;
+        return origin === Positioning.Origin.Left 
+        || origin === Positioning.Origin.Center 
+        || origin === Positioning.Origin.Top 
+        || origin === Positioning.Origin.TopLeft
+        ? 8 : 0;
     }
+
+    function bottomLeftRadius(origin: Origin): int {
+        return origin === Positioning.Origin.Right 
+        || origin === Positioning.Origin.Center 
+        || origin === Positioning.Origin.Top 
+        || origin === Positioning.Origin.TopRight
+        ? 8 : 0;
+    }
+
 }

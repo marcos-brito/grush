@@ -28,6 +28,10 @@ SlidingItem {
             implicitWidth: root.panelWidth
             implicitHeight: root.panelHeight
             color: root.panelColor
+            topLeftRadius: Positioning.topLeftRadius(root.origin)
+            topRightRadius: Positioning.topRightRadius(root.origin)
+            bottomLeftRadius: Positioning.bottomLeftRadius(root.origin)
+            bottomRightRadius: Positioning.bottomRightRadius(root.origin)
         }
     }
 }
