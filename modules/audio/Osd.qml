@@ -22,6 +22,14 @@ TimedPanel {
         objects: [root.node]
     }
 
+    WrapperMouseArea {
+        onClicked: root.node.audio.muted = !root.node.audio.muted
+        onWheel: {
+            if (wheel.angleDelta.y > 0 || wheel.angleDelta.x > 0)
+                slider.value += slider.stepSize;
+            else
+                slider.value -= slider.stepSize;
+        }
 
         ColumnLayout {
             anchors.fill: parent
