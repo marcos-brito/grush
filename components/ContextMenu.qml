@@ -1,5 +1,6 @@
 import QtQuick
 import Quickshell.Widgets
+import qs.components.overlay
 
 MouseArea {
     default property alias data: content.data

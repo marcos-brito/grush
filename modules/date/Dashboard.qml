@@ -3,10 +3,11 @@ import QtQuick.Layouts
 import Quickshell.Widgets
 import qs.config
 import qs.components
+import qs.components.overlay
 
-SuperPanel {
+Panel {
     name: "date-dashboard"
-    origin: SuperPanel.Origin.Left
+    origin: Positioning.Origin.Left
 
     ColumnLayout {
         anchors.margins: 16

@@ -5,14 +5,15 @@ import QtQuick.Layouts
 import QtQuick.Effects
 import qs.config
 import qs.components
+import qs.components.window
 
-BasePanel {
+BaseWindow {
     id: root
-    name: "popup"
 
-    default property alias data: wrapper.data
+    default property alias data: slider.data
+    property alias origin: slider.origin
     property alias anchor: popup.anchor
-    property int origin: SuperPanel.Origin.Left
+    name: "aaaa"
 
     MouseArea {
         anchors.fill: parent
@@ -30,34 +31,26 @@ BasePanel {
         id: popup
 
         color: Theme.transparent
-        width: wrapper.width
-        height: wrapper.height
+        width: slider.width
+        height: slider.height
 
         SlidingItem {
             id: slider
             onSlideOutFinished: popup.visible = false
-            anchors.fill: parent
             origin: root.origin
-
-            WrapperRectangle {
-                id: wrapper
-                color: Theme.overlay
-                radius: 8
-                margin: 6
-            }
         }
     }
 
     function open() {
-        root.visible = true
+        root.visible = true;
         popup.visible = true;
         slider.slideIn();
     }
 
     function close() {
         slider.slideOut();
-        popup.visible = true;
-        root.visible = false
+        popup.visible = false;
+        root.visible = false;
     }
 
     function toggle() {

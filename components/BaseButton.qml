@@ -1,6 +1,7 @@
 import QtQuick
 import Quickshell.Widgets
 import qs.config
+import qs.components.overlay
 
 WrapperMouseArea {
     id: root
@@ -19,6 +20,7 @@ WrapperMouseArea {
         if (tooltip)
             tip.show();
     }
+
     onExited: {
         trigger.color = color;
 
@@ -28,7 +30,7 @@ WrapperMouseArea {
 
     Tooltip {
         id: tip
-        origin: SuperPanel.Origin.BottomLeft
+        origin: Positioning.Origin.BottomLeft
         anchor.item: root
         anchor.margins.left: 20
         anchor.margins.top: -20

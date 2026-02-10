@@ -1,5 +1,6 @@
 import QtQuick
 import Quickshell.Widgets
+import qs.components.overlay
 
 // HACK: Can't use a WrapperItem because it makes the
 // edges invisible.
@@ -7,7 +8,7 @@ Item {
     id: root
 
     default property alias data: content.data
-    property int origin: SuperPanel.Origin.Top
+    property int origin: Positioning.Origin.Top
     property int edgeSize: 8
 
     state: origin
@@ -30,7 +31,7 @@ Item {
 
     states: [
         State {
-            name: SuperPanel.Origin.Top
+            name: Positioning.Origin.Top
             PropertyChanges {
                 root.implicitWidth: root.implicitWidth + (edgeSize * 2)
                 content.anchors.centerIn: root
@@ -45,7 +46,7 @@ Item {
             }
         },
         State {
-            name: SuperPanel.Origin.TopRight
+            name: Positioning.Origin.TopRight
             PropertyChanges {
                 root.implicitHeight: root.implicitHeight + edgeSize
                 root.implicitWidth: root.implicitWidth + edgeSize
@@ -62,7 +63,7 @@ Item {
             }
         },
         State {
-            name: SuperPanel.Origin.TopLeft
+            name: Positioning.Origin.TopLeft
             PropertyChanges {
                 root.implicitHeight: root.implicitHeight + edgeSize
                 root.implicitWidth: root.implicitWidth + edgeSize
@@ -80,7 +81,7 @@ Item {
             }
         },
         State {
-            name: SuperPanel.Origin.Bottom
+            name: Positioning.Origin.Bottom
             PropertyChanges {
                 root.implicitWidth: root.implicitWidth + (edgeSize * 2)
                 content.anchors.centerIn: root
@@ -96,7 +97,7 @@ Item {
             }
         },
         State {
-            name: SuperPanel.Origin.BottomRight
+            name: Positioning.Origin.BottomRight
             PropertyChanges {
                 root.implicitHeight: root.implicitHeight + edgeSize
                 root.implicitWidth: root.implicitWidth + edgeSize
@@ -114,7 +115,7 @@ Item {
             }
         },
         State {
-            name: SuperPanel.Origin.BottomLeft
+            name: Positioning.Origin.BottomLeft
             PropertyChanges {
                 root.implicitHeight: root.implicitHeight + edgeSize
                 root.implicitWidth: root.implicitWidth + edgeSize
@@ -133,7 +134,7 @@ Item {
             }
         },
         State {
-            name: SuperPanel.Origin.Right
+            name: Positioning.Origin.Right
             PropertyChanges {
                 root.implicitHeight: root.implicitHeight + (edgeSize * 2)
                 content.anchors.centerIn: root
@@ -148,7 +149,7 @@ Item {
             }
         },
         State {
-            name: SuperPanel.Origin.Left
+            name: Positioning.Origin.Left
             PropertyChanges {
                 root.implicitHeight: root.implicitHeight + (edgeSize * 2)
                 content.anchors.centerIn: root

@@ -1,11 +1,12 @@
 import QtQuick
 import Quickshell.Widgets
+import qs.components.overlay
 
 WrapperItem {
     id: root
 
     default property alias data: content.data
-    property int origin: SuperPanel.Origin.Top
+    property int origin: Positioning.Origin.Top
 
     signal slideInFinished
     signal slideOutFinished
@@ -47,8 +48,8 @@ WrapperItem {
         State {
             name: "opened"
             PropertyChanges {
-                // content.opacity: 1
-                // root.scale: 1
+                content.opacity: 1
+                root.scale: 1
                 slide.x: 0
                 slide.y: 0
             }
@@ -56,18 +57,18 @@ WrapperItem {
         State {
             name: "closed"
             PropertyChanges {
-                // content.opacity: 0
-                // root.scale: 0.4
+                content.opacity: .85
+                root.scale: 0.85
                 slide.x: {
                     switch (root.origin) {
-                    case SuperPanel.Origin.TopLeft:
-                    case SuperPanel.Origin.BottomLeft:
-                    case SuperPanel.Origin.Left:
+                    case Positioning.Origin.TopLeft:
+                    case Positioning.Origin.BottomLeft:
+                    case Positioning.Origin.Left:
                         return -root.width;
                         break;
-                    case SuperPanel.Origin.TopRight:
-                    case SuperPanel.Origin.BottomRight:
-                    case SuperPanel.Origin.Right:
+                    case Positioning.Origin.TopRight:
+                    case Positioning.Origin.BottomRight:
+                    case Positioning.Origin.Right:
                         return +root.width;
                         break;
                     default:
@@ -77,14 +78,14 @@ WrapperItem {
                 }
                 slide.y: {
                     switch (root.origin) {
-                    case SuperPanel.Origin.TopLeft:
-                    case SuperPanel.Origin.TopRight:
-                    case SuperPanel.Origin.Top:
+                    case Positioning.Origin.TopLeft:
+                    case Positioning.Origin.TopRight:
+                    case Positioning.Origin.Top:
                         return -root.height;
                         break;
-                    case SuperPanel.Origin.BottomRight:
-                    case SuperPanel.Origin.BottomLeft:
-                    case SuperPanel.Origin.Bottom:
+                    case Positioning.Origin.BottomRight:
+                    case Positioning.Origin.BottomLeft:
+                    case Positioning.Origin.Bottom:
                         return +root.height;
                         break;
                     default:
