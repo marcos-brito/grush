@@ -61,14 +61,17 @@ BaseButton {
             Layout.fillWidth: true
 
             BaseText {
+                Layout.fillWidth: true
                 text: `${root.value.summary} - ${Qt.formatTime(root.time, "hh:mm")}`
-                opacity: .7
+                elide: root.folded ? Text.ElideRight : Text.ElideNone
+                wrapMode: !root.folded ? Text.Wrap : Text.NoWrap
+                color: Theme.subtext
             }
 
             BaseText {
                 Layout.fillWidth: true
                 text: root.value.body
-                elide: root.folded ?  Text.ElideRight : Text.ElideNone
+                elide: root.folded ? Text.ElideRight : Text.ElideNone
                 wrapMode: !root.folded ? Text.Wrap : Text.NoWrap
             }
 
