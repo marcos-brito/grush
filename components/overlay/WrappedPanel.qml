@@ -12,8 +12,10 @@ BaseWindow{
     property alias panelWidth: content.panelWidth
     property alias panelHeight: content.panelHeight
 
-    width: content.implicitWidth
-    height: content.implicitHeight
+    // HACK: adding 2 so the window is large enough for
+    // the shadow effect to appear.
+    width: content.implicitWidth + 2
+    height: content.implicitHeight + 2
 
     function open(): void {
         root.visible = true;

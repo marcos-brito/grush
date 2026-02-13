@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Effects
 import Quickshell.Widgets
 import qs.config
 import qs.components
@@ -10,6 +11,13 @@ SlidingItem {
     property string panelColor: Theme.base
     property int panelWidth: screen.width * 0.25
     property int panelHeight: screen.height * 0.75
+
+    layer.enabled: true
+    layer.effect: MultiEffect {
+        shadowEnabled: true
+        blurMax: 15
+        shadowColor: Qt.alpha("#000", .7)
+    }
 
     anchors {
         left: Positioning.anchorLeft(root.origin) ? parent.left : null
