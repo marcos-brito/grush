@@ -2,10 +2,10 @@ import Quickshell
 import Quickshell.Wayland
 import QtQuick
 import QtQuick.Effects
+import qs.components.window
 import qs.config
-import qs.components
 
-BasePanel {
+BaseWindow {
     id: root
 
     property string color: Theme.base
@@ -15,11 +15,16 @@ BasePanel {
     property int left: 5
     property int right: 5
 
+    WlrLayershell.layer: WlrLayer.Top
     aboveWindows: false
     exclusionMode: ExclusionMode.Ignore
     visible: Options.showFrame
     name: "frame"
-    WlrLayershell.layer: WlrLayer.Background
+
+    mask: Region {
+        item: wrapper
+        intersection: Intersection.Xor
+    }
 
     anchors {
         top: true
@@ -29,6 +34,7 @@ BasePanel {
     }
 
     Item {
+        id: wrapper
         anchors.fill: parent
 
         layer.enabled: true
