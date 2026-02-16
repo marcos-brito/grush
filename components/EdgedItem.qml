@@ -12,8 +12,34 @@ Item {
     property int edgeSize: 8
 
     state: origin
-    implicitWidth: content.width
-    implicitHeight: content.height
+
+    implicitWidth: {
+        if (origin === Positioning.Origin.Top ||
+            origin === Positioning.Origin.Bottom)
+            return content.implicitWidth + edgeSize * 2
+
+        if (origin === Positioning.Origin.TopLeft ||
+            origin === Positioning.Origin.TopRight ||
+            origin === Positioning.Origin.BottomLeft ||
+            origin === Positioning.Origin.BottomRight)
+            return content.implicitWidth + edgeSize
+
+        return content.implicitWidth
+    }
+
+    implicitHeight: {
+        if (origin === Positioning.Origin.Left ||
+            origin === Positioning.Origin.Right)
+            return content.implicitHeight+ edgeSize * 2
+
+        if (origin === Positioning.Origin.TopLeft ||
+            origin === Positioning.Origin.TopRight ||
+            origin === Positioning.Origin.BottomLeft ||
+            origin === Positioning.Origin.BottomRight)
+            return content.implicitHeight + edgeSize
+
+        return content.implicitHeight
+    }
 
     WrapperItem {
         id: content
@@ -33,7 +59,6 @@ Item {
         State {
             name: Positioning.Origin.Top
             PropertyChanges {
-                root.implicitWidth: root.implicitWidth + (edgeSize * 2)
                 content.anchors.centerIn: root
 
                 edge1.anchors.top: content.top
@@ -48,11 +73,8 @@ Item {
         State {
             name: Positioning.Origin.TopRight
             PropertyChanges {
-                root.implicitHeight: root.implicitHeight + edgeSize
-                root.implicitWidth: root.implicitWidth + edgeSize
                 content.anchors.top: root.top
                 content.anchors.right: root.right
-
 
                 edge1.anchors.top: content.top
                 edge1.anchors.left: content.left
@@ -65,8 +87,6 @@ Item {
         State {
             name: Positioning.Origin.TopLeft
             PropertyChanges {
-                root.implicitHeight: root.implicitHeight + edgeSize
-                root.implicitWidth: root.implicitWidth + edgeSize
                 content.anchors.top: root.top
                 content.anchors.left: root.left
 
@@ -83,7 +103,6 @@ Item {
         State {
             name: Positioning.Origin.Bottom
             PropertyChanges {
-                root.implicitWidth: root.implicitWidth + (edgeSize * 2)
                 content.anchors.centerIn: root
 
                 edge1.anchors.bottom: content.bottom
@@ -99,8 +118,6 @@ Item {
         State {
             name: Positioning.Origin.BottomRight
             PropertyChanges {
-                root.implicitHeight: root.implicitHeight + edgeSize
-                root.implicitWidth: root.implicitWidth + edgeSize
                 content.anchors.bottom: root.bottom
                 content.anchors.right: root.left
 
@@ -117,8 +134,6 @@ Item {
         State {
             name: Positioning.Origin.BottomLeft
             PropertyChanges {
-                root.implicitHeight: root.implicitHeight + edgeSize
-                root.implicitWidth: root.implicitWidth + edgeSize
                 content.anchors.bottom: root.bottom
                 content.anchors.left: root.left
 
@@ -136,7 +151,6 @@ Item {
         State {
             name: Positioning.Origin.Right
             PropertyChanges {
-                root.implicitHeight: root.implicitHeight + (edgeSize * 2)
                 content.anchors.centerIn: root
 
                 edge1.anchors.bottom: content.bottom
@@ -151,7 +165,6 @@ Item {
         State {
             name: Positioning.Origin.Left
             PropertyChanges {
-                root.implicitHeight: root.implicitHeight + (edgeSize * 2)
                 content.anchors.centerIn: root
 
                 edge1.anchors.bottom: content.bottom
